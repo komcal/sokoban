@@ -90,21 +90,26 @@ public class GameBoard {
     }
  
     public boolean hasBoxAt(int r, int c) {
+        for(int i = 0 ; i < numBoxes ; i++){
+            if (boxRows[i] == r && boxCols[i] == c) {
+            	return true;
+            }
+        }
         return false;
     }
  
     public boolean hasExitAt(int r, int c) {
+
+    	return getBaseBoardType(r, c).equals("*");
+    }
+    public String getBaseBoardType(int r, int c) {
     	if (r < 0 || c < 0 || c >= baseBoard[0].length() || r >= baseBoard.length) {
-    		return false;
-    	}
-    	String row = baseBoard[r];
-    	if (Character.toString(row.charAt(c)).equals("*")) {
-    		return true;
+    		return "XX";
     	} else {
-    		return false;
+    		String row = baseBoard[r];
+    		return Character.toString(row.charAt(c));
     	}
     }
- 
     public String toString() {
         return "";
     }
