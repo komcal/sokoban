@@ -103,7 +103,7 @@ public class GameBoard {
     	return getBaseBoardType(r, c).equals("*");
     }
     public String getBaseBoardType(int r, int c) {
-    	if (r < 0 || c < 0 || c >= baseBoard[0].length() || r >= baseBoard.length) {
+    	if (isPositionOutOfBoard(r, c)) {
     		return "XX";
     	} else {
     		String row = baseBoard[r];
@@ -111,6 +111,28 @@ public class GameBoard {
     	}
     }
     public String toString() {
-        return "";
+    	String stringBoard = "";
+        for (int i = 0 ; i < baseBoard.length ; i++) {
+        	String row = baseBoard[i];
+        	for (int j = 0 ; j < row.length() ; j++) {
+        		if (hasBoxAt(i, j)) {
+        			stringBoard += "O";
+        		}
+        		else if (hasPlayerAt(i, j)) {
+        			stringBoard += "A";
+        		}
+        		else {
+        			stringBoard += getBaseBoardType(i, j);
+        		}
+        	}
+        	stringBoard += "\n";
+        }
+        return stringBoard;
+    }
+    public boolean isPositionOutOfBoard(int r, int c){
+    	if(r < 0 || c < 0 || c >= baseBoard[0].length() || r >= baseBoard.length){
+    		return true;
+    	}
+    	return false;
     }
 }

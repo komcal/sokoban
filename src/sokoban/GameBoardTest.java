@@ -79,5 +79,23 @@ public class GameBoardTest {
         assertFalse(smallBoard.hasBoxAt(100, 1));
         assertFalse(smallBoard.hasBoxAt(1, 500));
     }
-    
+    @Test
+    public void testToStringWithInitialPositions() {
+        assertEquals(		
+                " #####\n"+
+                "#*O.A#\n"+
+                "#...O#\n"+
+                "##..*#\n"+
+                " #####\n",
+                smallBoard.toString());
+        smallBoard.setPlayerPosition(2, 3);
+        assertEquals(		
+                " #####\n"+
+                "#*O..#\n"+
+                "#..AO#\n"+
+                "##..*#\n"+
+                " #####\n",
+                smallBoard.toString());
+        
+    }
 }
