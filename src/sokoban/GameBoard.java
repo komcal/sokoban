@@ -94,7 +94,15 @@ public class GameBoard {
     }
  
     public boolean hasExitAt(int r, int c) {
-        return false;
+    	if (r < 0 || c < 0 || c >= baseBoard[0].length() || r >= baseBoard.length) {
+    		return false;
+    	}
+    	String row = baseBoard[r];
+    	if (Character.toString(row.charAt(c)).equals("*")) {
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
  
     public String toString() {
