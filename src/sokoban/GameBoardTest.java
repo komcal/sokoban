@@ -96,6 +96,6 @@ public class GameBoardTest {
                 "##..*#\n"+
                 " #####\n",
                 smallBoard.toString());
-        
     }
+    
 }
