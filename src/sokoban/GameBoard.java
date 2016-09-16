@@ -12,7 +12,10 @@ public class GameBoard {
     private int numBoxes;
     private int[] boxRows;
     private int[] boxCols;
- 
+    
+    public enum Direction {
+        UP, RIGHT, DOWN, LEFT
+    }
     public GameBoard(String[] map) {
         loadBoard(map);
     }
@@ -134,5 +137,42 @@ public class GameBoard {
     		return true;
     	}
     	return false;
+    }
+    public int getColDiff(Direction dir) {
+        switch(dir) {
+        case LEFT:
+            return -1;
+        case RIGHT:
+            return 1;
+        default:
+            return 0;
+        }
+    }
+    public int getRowDiff(Direction dir) {
+        switch(dir) {
+        case UP:
+            return -1;
+        case DOWN:
+            return 1;
+        default:
+            return 0;
+        }
+    }
+    public char getBoardNextItem(int r, int c, Direction dir) {
+    	r += getRowDiff(dir);
+    	c +=  getColDiff(dir);
+    	if (hasBoxAt(r, c)) {
+    		return 'O';
+    	}
+    	else if (hasExitAt(r, c)) {
+    		return '*';
+    	}
+    	else if (hasPlayerAt(r, c)) {
+    		return 'A';
+    	}
+    	else {
+    		String row = baseBoard[r];
+    		return row.charAt(c);
+    	}
     }
 }
